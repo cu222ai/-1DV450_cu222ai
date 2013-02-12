@@ -1,0 +1,25 @@
+<div id="
+<h1> Create a new project </h1>
+
+<%= form_for @project do |p| %>
+  <div class="text_field">
+    <%= p.label :name %><br />
+    <%= p.text_field :name %>
+    <br />
+
+  <%= p.label :description %><br />
+    <%= p.text_area :description %>
+    <br />
+
+    <%= p.label :start_date %><br />
+    <%= p.text_field :start_date %>
+    <br />
+
+    <%= p.label :end_date %><br />
+    <%= p.text_field :end_date %>
+    <br />
+    <%= p.submit "Skapa" %>
+  </div>
+
+
+  <% end %>
