@@ -1,0 +1,16 @@
+<h1>Projects: </h1>
+
+<% if @projects.blank? %>
+<p>There are not any projects currently in the system.</p>
+<% end %>
+
+<% else %>
+<% @projects.each do |project| %>
+<%= link_to project.name, project_path(project) %><br />
+
+
+
+<br><br>
+
+<% end %>
+

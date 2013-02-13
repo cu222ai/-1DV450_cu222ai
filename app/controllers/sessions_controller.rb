@@ -7,9 +7,6 @@ def home
 #Home Page
 end
 
-def newproj
-#Create Project Page
-end
 
 
 

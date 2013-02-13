@@ -1,0 +1,20 @@
+  <h1> Edit ticket: <%= @ticket.name %></h1>
+  <%= form_for(@ticket) do |t| %>
+
+<div class="text_field">
+<%=t.label :name %>
+<%=t.text_field :name %>
+</div>
+
+<div class="text_field">
+<%=t.label :description %>
+<%=t.text_area :description %>
+</div>
+
+<%= t.select :status_id, options_from_collection_for_select(Status.all, :id, :status_name)%>
+
+
+<%= t.submit "Spara", :confirm => "Are you sure you want to update this ticket?"%>
+
+
+<% end %>

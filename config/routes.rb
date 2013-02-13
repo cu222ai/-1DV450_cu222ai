@@ -3,8 +3,17 @@ AMPTA::Application.routes.draw do
   # first created -> highest priority.
 
   # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
+     #match 'projects/:project_id' => 'projects#show'
   # Keep in mind you can assign values other than :controller and :action
+resources :projects do
+resources :tickets
+end
+
+resources :tickets
+resources :projects
+resources :users
+
+
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
@@ -51,17 +60,20 @@ AMPTA::Application.routes.draw do
 
 
   root :to => 'sessions#login'
-  match "register", :to => "users#new"
-  match "login", :to => "sessions#login"
-  match "logout", :to => "sessions#logout"
+  #match "edit", :to => "projects#edit"
 
-  match "newproj", :to => "projects#new"
+  match "register", :to => "users#new"
+ match "login", :to => "sessions#login_attempt"
+  match "logout", :to => "sessions#logout"
 match "projects", :to => "projects#projects"
-        match "projects", :to => "projects#projects"
+#match "delete", :to => "projects#delete"
+
+
+
 
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id))(.:format)'
+  #match ':controller(/:action(/:id))(.:format)'
 end

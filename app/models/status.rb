@@ -1,3 +1,5 @@
 class Status < ActiveRecord::Base
-  belongs_to :ticket
+  has_many :tickets
+
+  attr_accessible :status_id, :status_name
 end

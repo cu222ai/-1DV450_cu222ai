@@ -1,0 +1,21 @@
+<div class="span4">
+  <h1>Projects: </h1>
+
+<% @projects.each do |project| %>
+<%= link_to project.name, project_path(project) %><br />
+<% end %>
+
+
+<br><br>
+
+<h1>Tickets: </h1>
+<% @tickets.each do |ticket| %>
+<%= link_to ticket.name, ticket_path(ticket) %><br />
+<% end %>
+
+
+<br><br>
+
+
+</div>
+
