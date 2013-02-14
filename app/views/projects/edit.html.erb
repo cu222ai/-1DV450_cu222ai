@@ -1,4 +1,19 @@
   <h1> Edit project: <%= @project.name %></h1>
+
+  <% if @project.errors.any? %>
+<div class="alert alert-error">
+  <h2><%= pluralize(@project.errors.count, "error") %> in the form. Please correct.
+
+    <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+
+  </div>
+  <% end %>
+
+
   <%= form_for(@project) do |f| %>
 
 <div class="text_field">
@@ -10,6 +25,8 @@
 <%=f.label :description %>
 <%=f.text_area :description %>
 </div>
+
+<% if false %><!-- comment start -->
 <%=f.label 'Users Assigned' %>
 <% @users.each do |u| %>
       <%= check_box_tag :user_ids, u.id, @project.users.include?(u), :name => 'project[user_ids][]' -%>
@@ -17,6 +34,7 @@
         <%= label_tag :users_ids, u.username.capitalize %>
 
 <% end %>
+<!-- comment end --><% end %>
 
 <div class="text_field">
 <%=f.label :start_date %>
@@ -30,7 +48,7 @@
 </div>
 
 
-<%= f.submit "Spara", :confirm => "Are you sure you want to update this project?"%>
+<%= f.submit "Spara" %>
 
 
 <% end %>

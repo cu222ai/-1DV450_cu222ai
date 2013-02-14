@@ -6,7 +6,12 @@
 
 <% else %>
 <% @projects.each do |project| %>
-<%= link_to project.name, project_path(project) %><br />
+<%  if project.user_id != @project_id %>
+Du är inte ägare till:
+<% else %>
+Du är ägare till:
+
+<% end %><%= link_to project.name, project_path(project) %><br />
 
 
 

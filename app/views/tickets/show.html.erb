@@ -2,6 +2,14 @@
 
 <p><strong>Description: </strong> <%= @ticket.description %><br />
 
+<strong>Owner:</strong>
+  <%= @ticket.user.username %>
+  <br />
+
+  <strong>Type:</strong>
+<%= @ticket.status.status_name %>
+
+
 
 
 <br />

@@ -1,6 +1,17 @@
 
 <h1> Create a new ticket  </h1>
+<% if @ticket.errors.any? %>
+<div class="alert alert-error">
+  <h2><%= pluralize(@ticket.errors.count, "error") %> in the form. Please correct.
 
+    <ul>
+      <% @ticket.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+
+  </div>
+  <% end %>
 
  <%= form_for(:ticket, :url => {:controller => 'tickets', :action => 'create'}) do |f| %>
   <div class="text_field">

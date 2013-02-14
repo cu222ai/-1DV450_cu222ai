@@ -9,7 +9,4 @@ add_index :projects_users, ["project_id", "user_id"]
 
 end
 
-  def down
-    drop_table :projects_users
-  end
 end

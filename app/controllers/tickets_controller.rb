@@ -5,6 +5,7 @@ end
 
 def show
   @ticket = Ticket.find(params[:id])
+
 end
 
 def destroy
@@ -21,8 +22,11 @@ def edit
 
 def update
       @ticket = Ticket.find(params[:id])
-      @ticket.update_attributes(params[:ticket])
-         redirect_to :action => 'show', :id => @ticket.id
+      if @ticket.update_attributes(params[:ticket])
+        redirect_to :action => 'show', :id => @ticket.id
+         else
+        render 'edit'
+     end
 end
 
 def new
@@ -42,6 +46,7 @@ def create
   @ticket.project_id = params[:project_id]
 
   if @ticket.save
+
      redirect_to :controller => 'projects', :action => 'show', :id => @project
   else
     render :action => "new"

@@ -5,12 +5,15 @@ def index
   @projects = Project.all
   @tickets = Ticket.all
 
+  @project_id= session[:user_id]
+
 
 end
 
 def show
   @project = Project.find(params[:id])
    @users = User.all
+   @project_id= session[:user_id]
 
 end
 
@@ -27,8 +30,11 @@ def edit
 
 def update
       @project = Project.find(params[:id])
-      @project.update_attributes(params[:project])
+     if @project.update_attributes(params[:project])
          redirect_to :action => 'show', :id => @project.id
+       else
+        render 'edit'
+     end
 end
 
 def new

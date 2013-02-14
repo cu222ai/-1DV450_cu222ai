@@ -1,5 +1,18 @@
 
 <h1> Create a new project </h1>
+<% if @project.errors.any? %>
+<div class="alert alert-error">
+  <h2><%= pluralize(@project.errors.count, "error") %> in the form. Please correct.
+
+    <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+
+  </div>
+  <% end %>
+
 
 
  <%= form_for(:project, :url => {:controller => 'projects', :action => 'create'}) do |f| %>
@@ -12,7 +25,7 @@
     <%= f.text_area :description %>
     <br />
 
-
+<% if false %><!-- comment start -->
   <%=f.label 'Users Assigned' %>
     <% @users.each do |u| %>
       <%= check_box_tag :user_ids, u.id, @project.users.include?(u), :name => 'project[user_ids][]' -%>
@@ -20,6 +33,7 @@
         <%= label_tag :users_ids, u.username.capitalize %>
 
 <% end %>
+<!-- comment end --><% end %>
     <br />
 
 
