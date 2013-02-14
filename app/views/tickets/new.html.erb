@@ -1,5 +1,5 @@
 
-<h1> Create a new ticket  </h1>
+<div id="project"><h1> Create a new ticket  </h1>
 <% if @ticket.errors.any? %>
 <div class="alert alert-error">
   <h2><%= pluralize(@ticket.errors.count, "error") %> in the form. Please correct.
@@ -34,4 +34,4 @@
   </div>
 
 
-  <% end %>
+  <% end %></div>

@@ -1,4 +1,4 @@
-<h1>Projects: </h1>
+<div id="project"><h1>Projects: </h1>
 
 <% if @projects.blank? %>
 <p>There are not any projects currently in the system.</p>
@@ -7,9 +7,9 @@
 <% else %>
 <% @projects.each do |project| %>
 <%  if project.user_id != @project_id %>
-Du är inte ägare till:
+
 <% else %>
-Du är ägare till:
+Owner of:
 
 <% end %><%= link_to project.name, project_path(project) %><br />
 
@@ -18,4 +18,5 @@ Du är ägare till:
 <br><br>
 
 <% end %>
+</div>
 

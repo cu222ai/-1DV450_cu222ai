@@ -7,12 +7,21 @@
 
 <strong>Users Assigned:</strong>
 <br />
-<% @project.users.each do |u| %>
-        <%= u.username.capitalize %>
-        <br />
+<% if @project.users.blank? %>
+There are no users attached to this project.
+<br />
+<br />
 
+<% else %>
+<% @project.users.each do |u| %>
+ <%= u.username.capitalize %>
+ <br />
 
 <% end %>
+<% end %>
+<br />
+        <br />
+<div class="ticketlist">
 
 <h4> Tickets for <%= @project.name %>: </h4>
 <% @project.tickets.each do |t| %>
@@ -25,7 +34,7 @@
 <%  if @project.user_id == @project_id %>
 
 <%= link_to "New ticket", new_project_ticket_path(@project) %><br />
-
+</div>
 
 
 <b> <%= link_to 'Edit', {:action => 'edit', :id => @project.id} %></b><br />
