@@ -9,7 +9,7 @@ end
 
 def destroy
       Ticket.find(params[:id]).destroy
-      @id = params[:project_id]
+      @id = params[:id]
          @project = Project.find(@id)
        redirect_to :controller => 'projects', :action => 'show', :id => @project.id
 
@@ -21,7 +21,7 @@ def edit
 
 def update
       @ticket = Ticket.find(params[:id])
-      @ticket.update_attributes(params[:project])
+      @ticket.update_attributes(params[:ticket])
          redirect_to :action => 'show', :id => @ticket.id
 end
 

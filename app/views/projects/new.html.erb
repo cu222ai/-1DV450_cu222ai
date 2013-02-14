@@ -12,6 +12,17 @@
     <%= f.text_area :description %>
     <br />
 
+
+  <%=f.label 'Users Assigned' %>
+    <% @users.each do |u| %>
+      <%= check_box_tag :user_ids, u.id, @project.users.include?(u), :name => 'project[user_ids][]' -%>
+
+        <%= label_tag :users_ids, u.username.capitalize %>
+
+<% end %>
+    <br />
+
+
     <%= f.label :start_date %><br />
     <%= f.datetime_select :start_date %>
     <br />

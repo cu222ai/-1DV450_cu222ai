@@ -5,6 +5,14 @@
 <strong>End Date:</strong> <%= @project.end_date%><br />
 </p>
 
+<strong>Users Assigned:</strong>
+<br />
+<% @project.users.each do |u| %>
+        <%= u.username.capitalize %>
+        <br />
+
+
+<% end %>
 
 <h4> Tickets for <%= @project.name %>: </h4>
 <% @project.tickets.each do |t| %>

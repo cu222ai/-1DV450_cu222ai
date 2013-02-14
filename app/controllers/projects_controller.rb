@@ -5,10 +5,12 @@ def index
   @projects = Project.all
   @tickets = Ticket.all
 
+
 end
 
 def show
   @project = Project.find(params[:id])
+   @users = User.all
 
 end
 
@@ -20,6 +22,7 @@ def destroy
 
 def edit
       @project = Project.find(params[:id])
+      @users = User.all
    end
 
 def update
@@ -30,6 +33,8 @@ end
 
 def new
   @project = Project.new
+    @users = User.all
+
 end
 
 def create
