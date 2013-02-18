@@ -11,10 +11,12 @@ def show
 end
 
 def destroy
-      Ticket.find(params[:id]).destroy
+      if Ticket.find(params[:id]).destroy
       @id = params[:id]
          @project = Project.find(@id)
        redirect_to :controller => 'projects', :action => 'show', :id => @project.id
+     end
+     redirect_to :controller => 'projects', :action => 'show', :id => @project.id
 
    end
 

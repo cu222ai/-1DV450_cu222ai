@@ -15,6 +15,7 @@ def show
    @users = User.all
    @project_id= session[:user_id]
 
+
 end
 
 def destroy
