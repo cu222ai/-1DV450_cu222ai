@@ -7,17 +7,13 @@
 
 <strong>Users Assigned:</strong>
 <br />
-<% if @project.users.blank? %>
-There are no users attached to this project.
+<%  if @project.user_id == @project_id %>
+You(Owner)
 <br />
-<br />
-
-<% else %>
-<% @project.users.each do |u| %>
- <%= u.username.capitalize %>
- <br />
-
 <% end %>
+<% @project.users.each do |u| %>
+<%= u.username.capitalize %>
+ <br />
 <% end %>
 <br />
         <br />

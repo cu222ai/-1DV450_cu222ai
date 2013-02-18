@@ -11,7 +11,7 @@
 
 
 
-
+<%  if @ticket.user.username == @ticket_id %>
 <br />
 
 
@@ -22,5 +22,6 @@
 
 
 <br /><br />
+<% end %>
 <%= button_to 'Back', project_path(@ticket.project_id) %>
 </div>

@@ -7,16 +7,19 @@
 <% else %>
 <% @projects.each do |project| %>
 <%  if project.user_id != @project_id %>
-
+<div class="single_proj">
+<%= button_to 'Gå Med', {:action => 'show', :id => project.id} %>
+</div>
 <% else %>
+
 Owner of:
 
-<% end %><%= link_to project.name, project_path(project) %><br />
+<% end %><div class="single_proj"><%= link_to project.name, project_path(project) %></div>
 
-
-
+<br />
 <br><br>
 
 <% end %>
+
 </div>
 

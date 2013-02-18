@@ -25,7 +25,7 @@
     <%= f.text_area :description %>
     <br />
 
-<% if false %><!-- comment start -->
+
   <%=f.label 'Users Assigned' %>
     <% @users.each do |u| %>
       <%= check_box_tag :user_ids, u.id, @project.users.include?(u), :name => 'project[user_ids][]' -%>
@@ -33,7 +33,7 @@
         <%= label_tag :users_ids, u.username.capitalize %>
 
 <% end %>
-<!-- comment end --><% end %>
+
     <br />
 
 

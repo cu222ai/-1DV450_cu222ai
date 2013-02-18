@@ -6,6 +6,8 @@ end
 def show
   @ticket = Ticket.find(params[:id])
 
+  @ticket_id= User.find(session[:user_id]).username
+
 end
 
 def destroy
@@ -17,7 +19,15 @@ def destroy
    end
 
 def edit
+     @ticket_id= User.find(session[:user_id]).username
       @ticket= Ticket.find(params[:id])
+
+      if(@ticket.user.username == @ticket_id)
+        @ticket= Ticket.find(params[:id])
+      else
+         redirect_to :action => 'show', :id => @ticket.id
+      end
+
    end
 
 def update
