@@ -2,7 +2,9 @@ class ProjectsController < ApplicationController
 
 
 def index
-  @projects = Project.all
+
+
+  @projects = Project.search(params[:search])
   @tickets = Ticket.all
 
   @project_id= session[:user_id]

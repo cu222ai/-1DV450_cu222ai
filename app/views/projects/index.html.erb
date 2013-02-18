@@ -2,7 +2,7 @@
   <%= render 'tickets/ticketlist' %>
 </div>
 <div id="project"><h1>Projects: </h1>
-
+<%= render 'layouts/search' %>
 <% if @projects.blank? %>
 <p>There are not any projects currently in the system.</p>
 <% end %>
