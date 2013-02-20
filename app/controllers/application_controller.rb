@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   rescue_from ActiveRecord::RecordNotFound, :with => :rescue404
  rescue_from ActionController::RoutingError, :with => :rescue404
+ rescue_from ActionController::UnknownController,  :with => :rescue404
 
   protected
   def authenticate_user
