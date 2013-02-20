@@ -18,12 +18,10 @@ def login_attempt
 authorized_user = User.authenticate(params[:username],params[:login_password])
 if authorized_user
 session[:user_id] = authorized_user.id
-flash[:notice] = "Logged in as: #{authorized_user.username}"
+
 redirect_to(:controller => 'projects')
-
-
 else
-flash[:notice] = "Invalid Username or Password"
+flash[:invalid_login] = "Invalid Username or Password"
          flash[:color]= "invalid"
 render "login"
 end

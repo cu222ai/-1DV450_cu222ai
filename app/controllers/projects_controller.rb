@@ -2,14 +2,10 @@ class ProjectsController < ApplicationController
 
 
 def index
-
-
   @projects = Project.search(params[:search])
   @tickets = Ticket.all
   @projects_sorted = @projects.sort_by(&:updated_at).reverse
   @project_id= session[:user_id]
-
-
 end
 
 def show
@@ -57,9 +53,7 @@ def update
          else
            render 'edit'
       end
-    else
-        redirect_to :action => 'show', :id => @project.id
-      end
+end
 end
 
 def new
@@ -73,9 +67,10 @@ end
 def create
   @project = Project.new(params[:project])
   @project.user_id = session[:user_id]
+  @session_id = session[:user_id]
+       @users = User.where("id != ?", @session_id)
 
-
-  if @project.save
+ if @project.save
     redirect_to projects_path
      flash[:notice] = "Project created!"
 else

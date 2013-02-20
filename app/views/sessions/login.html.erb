@@ -12,4 +12,6 @@ Password:</br> <%= password_field_tag :login_password %>
 
 <%= submit_tag("Log In") %>
 <% end %>
-</div></div>
+</div>
+<div class="invalid"><%= flash[:invalid_login] %></div>
+</div>
