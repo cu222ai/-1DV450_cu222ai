@@ -73,21 +73,26 @@ p {
 
 #project
 {
-
-background: #000;
-border-radius: 8px;
-padding: 15px 15px 15px 15px;
-
+background-color: #FFB38C;
+    border-radius: 6px 6px 6px 6px;
+    color: inherit;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 30px;
+    margin-bottom: 30px;
+    padding: 60px;
 }
 
-.span4
+.yours
 {
 
 background: #464646;
+float:left;
 border-radius: 5px;
 padding: 10px 10px 10px 10px;
 border: 3px solid #1A1A1A;
 border-top: none;
+margin-left: -280px;
 
 }
 

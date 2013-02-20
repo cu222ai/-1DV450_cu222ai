@@ -1,28 +1,34 @@
-<div class="span4">
-  <%= render 'tickets/ticketlist' %>
-</div>
-<div id="project"><h1>Projects: </h1>
+
+
+<div id="project">
+
+
 <%= render 'layouts/search' %>
-<% if @projects.blank? %>
-<p>There are not any projects currently in the system.</p>
-<% end %>
-
-<% else %>
-<% @projects.each do |project| %>
-<%  if project.user_id != @project_id %>
-<div class="single_proj">
-<%= button_to 'Gå Med', {:action => 'show', :id => project.id} %>
-</div>
-<% else %>
-
-Owner of:
-
-<% end %><div class="single_proj"><%= link_to project.name, project_path(project) %></div>
 
 <br />
-<br><br>
+<h1>Projects: </h1>
+<% if @projects.blank? %>
+<p>No projects.</p>
+<% end %>
+
+<% else %>
+<% @projects_sorted.each do |project| %>
+
+<div class="single_proj">
+  <br />
+<%  if project.user_id == @project_id %>
+
+<h4>Owner of:</h4>
+<% end %><h2><%= link_to project.name, project_path(project) %></h2>
+<br />
+<br />
+
+
+
 
 <% end %>
+
+</div>
 
 </div>
 

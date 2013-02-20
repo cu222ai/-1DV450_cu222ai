@@ -7,18 +7,17 @@
 
 <strong>Users Assigned:</strong>
 <br />
-<%  if @project.user_id == @project_id %>
+<%  if @project.user_id == @session %>
 You(Owner)
 <br />
 <% end %>
 <% @project.users.each do |u| %>
 <%= u.username %>
- <br />
+<br />
 <% end %>
 <br />
         <br />
 <div class="ticketlist">
-
 <h4> Tickets for <%= @project.name %>: </h4>
 <% @project.tickets.each do |t| %>
 
@@ -27,12 +26,12 @@ You(Owner)
 <% end %>
 
 <br /> <br />
-
+<%  if @project.users.include? @session || @project.user_id == @session  %>
 <%= link_to "New ticket", new_project_ticket_path(@project) %><br />
+<% end %>
 </div>
 
-
-<%  if @project.user_id == @project_id %>
+<%  if @project.user_id == @session %>
 <b> <%= link_to 'Edit', {:action => 'edit', :id => @project.id} %></b><br />
 <b> <%= link_to "Delete",  project_path(@project),
 :method => :delete,

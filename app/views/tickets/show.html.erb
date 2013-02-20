@@ -11,7 +11,7 @@
 
 
 
-<%  if @ticket.user.username == @ticket_id %>
+<%  if @ticket.user.username == @ticket_id || @ticket.project.user_id == @session.id %>
 <br />
 
 
@@ -23,5 +23,5 @@
 
 <br /><br />
 <% end %>
-<%= button_to 'Back', project_path(@ticket.project_id) %>
+<%= button_to 'Back',  { :controller => 'projects', :action => 'show', :id => @ticket.project_id} %>
 </div>

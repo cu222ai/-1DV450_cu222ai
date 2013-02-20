@@ -15,6 +15,9 @@ resources :users
 
 
 
+
+
+
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
@@ -60,13 +63,15 @@ resources :users
 
 
   root :to => 'sessions#login'
-  #match "edit", :to => "projects#edit"
+
 
   match "register", :to => "users#new"
  match "login", :to => "sessions#login_attempt"
   match "logout", :to => "sessions#logout"
 match "projects", :to => "projects#projects"
-#match "delete", :to => "projects#delete"
+
+#match "*path", :to => "projects#index"
+
 
 
 

@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  rescue_from ActiveRecord::RecordNotFound, :with => :rescue404
+ rescue_from ActionController::RoutingError, :with => :rescue404
+
   protected
   def authenticate_user
     unless session[:user_id]
@@ -12,6 +15,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+def rescue404
+    render  'public/404.html'
+  end
   #This method for prevent user to access Signup & Login Page without logout
   def save_login_state
     if session[:user_id]

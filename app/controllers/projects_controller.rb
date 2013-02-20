@@ -6,7 +6,7 @@ def index
 
   @projects = Project.search(params[:search])
   @tickets = Ticket.all
-
+  @projects_sorted = @projects.sort_by(&:name)
   @project_id= session[:user_id]
 
 
@@ -15,15 +15,14 @@ end
 def show
   @project = Project.find(params[:id])
    @users = User.all
-   @project_id= session[:user_id]
-
-
+    @session = User.find(session[:user_id])
 end
 
 def destroy
       @project = Project.find(params[:id])
-  if(@project == session[:user_id])
-      Project.find(params[:id]).destroy
+      @project_id= session[:user_id]
+  if(@project.user_id == @project_id)
+      Project.destroy(params[:id])
       redirect_to projects_path
     else
            redirect_to :action => 'show', :id => @project.id
@@ -35,9 +34,11 @@ def edit
       @session_id = User.find(session[:user_id]).id
       @project = Project.find(params[:id])
       @users = User.all
+       @session_id = session[:user_id]
+       @users = User.where("id != ?", @session_id)
   if(@project.user_id == @session_id)
       @project = Project.find(params[:id])
-      @users = User.all
+
     else
        redirect_to :action => 'show', :id => @project.id
      end
@@ -60,6 +61,8 @@ end
 def new
   @project = Project.new
     @users = User.all
+       @session_id = session[:user_id]
+       @users = User.where("id != ?", @session_id)
 
 end
 

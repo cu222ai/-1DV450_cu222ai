@@ -5,26 +5,34 @@ end
 
 def show
   @ticket = Ticket.find(params[:id])
-
+ @session= User.find(session[:user_id])
   @ticket_id= User.find(session[:user_id]).username
+
 
 end
 
 def destroy
-      if Ticket.find(params[:id]).destroy
-      @id = params[:id]
-         @project = Project.find(@id)
-       redirect_to :controller => 'projects', :action => 'show', :id => @project.id
+  @ticket_id= User.find(session[:user_id]).username
+    @ticket= Ticket.find(params[:id])
+ @session= User.find(session[:user_id])
+
+       if(@ticket.user.username == @ticket_id || @ticket.project.user_id == @session.id)
+        Ticket.destroy(params[:id])
+
+          redirect_to :controller => 'projects', :action => 'show', :id => @ticket.project_id
+       else
+         redirect_to :action => 'show', :id => @ticket.id
      end
-     redirect_to :controller => 'projects', :action => 'show', :id => @project.id
+
 
    end
 
 def edit
      @ticket_id= User.find(session[:user_id]).username
-      @ticket= Ticket.find(params[:id])
+    @ticket= Ticket.find(params[:id])
+ @session= User.find(session[:user_id])
 
-      if(@ticket.user.username == @ticket_id)
+      if(@ticket.user.username == @ticket_id || @ticket.project.user_id == @session.id)
         @ticket= Ticket.find(params[:id])
       else
          redirect_to :action => 'show', :id => @ticket.id
