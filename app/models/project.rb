@@ -8,11 +8,11 @@ class Project < ActiveRecord::Base
 
    validates :name,
    :presence => {:message => "You need to specify a name"},
-    :length => {:minimum => 6, :message => "A project has to have atleast 6 characters"}
+    :length => {:minimum => 6, :maximum => 50, :message => "A project has to have atleast 6 characters, max 50"}
 
      validates :description,
    :presence => {:message => "You need to specify a description"},
-    :length => {:minimum => 6, :message => "A description has to have atleast 6 characters"}
+    :length => {:minimum => 6, :maximum => 50, :message => "A description has to have atleast 6 characters, max 50"}
 
       validate :end_date_cannot_be_less_then_start_date
 

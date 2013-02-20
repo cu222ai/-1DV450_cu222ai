@@ -69,7 +69,7 @@ resources :users
  match "login", :to => "sessions#login_attempt"
   match "logout", :to => "sessions#logout"
 match "projects", :to => "projects#projects"
-
+match "tickets", :to => "tickets#tickets"
 #match "*path", :to => "projects#index"
 
 

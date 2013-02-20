@@ -20,6 +20,7 @@ def destroy
         Ticket.destroy(params[:id])
 
           redirect_to :controller => 'projects', :action => 'show', :id => @ticket.project_id
+          flash[:notice] = "Ticket deleted!"
        else
          redirect_to :action => 'show', :id => @ticket.id
      end
@@ -44,16 +45,25 @@ def update
       @ticket = Ticket.find(params[:id])
       if @ticket.update_attributes(params[:ticket])
         redirect_to :action => 'show', :id => @ticket.id
+        flash[:notice] = "Ticket updated!"
          else
         render 'edit'
      end
 end
 
 def new
+
+  @id = params[:project_id]
+  @project = Project.find(@id)
+  @session= User.find(session[:user_id])
+   @user_id = session[:user_id]
+
+ if @project.users.include? (@session)  or  @project.user_id == @user_id
             @ticket = Ticket.new
            @id = params[:project_id]
 
             @project = Project.find(@id)
+          end
        end
 
 def create
@@ -68,6 +78,7 @@ def create
   if @ticket.save
 
      redirect_to :controller => 'projects', :action => 'show', :id => @project
+  flash[:notice] = "Ticket saved!"
   else
     render :action => "new"
   end

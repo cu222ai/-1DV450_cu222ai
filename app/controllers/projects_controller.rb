@@ -6,7 +6,7 @@ def index
 
   @projects = Project.search(params[:search])
   @tickets = Ticket.all
-  @projects_sorted = @projects.sort_by(&:name)
+  @projects_sorted = @projects.sort_by(&:updated_at).reverse
   @project_id= session[:user_id]
 
 
@@ -16,6 +16,7 @@ def show
   @project = Project.find(params[:id])
    @users = User.all
     @session = User.find(session[:user_id])
+    @user_id= session[:user_id]
 end
 
 def destroy
@@ -24,6 +25,8 @@ def destroy
   if(@project.user_id == @project_id)
       Project.destroy(params[:id])
       redirect_to projects_path
+      flash[:notice] = "Project deleted!"
+
     else
            redirect_to :action => 'show', :id => @project.id
          end
@@ -50,6 +53,7 @@ def update
        if(@project.user_id == @session_id)
          if @project.update_attributes(params[:project])
             redirect_to :action => 'show', :id => @project.id
+             flash[:notice] = "Project updated!"
          else
            render 'edit'
       end
@@ -73,7 +77,8 @@ def create
 
   if @project.save
     redirect_to projects_path
-  else
+     flash[:notice] = "Project created!"
+else
     render :action => "new"
   end
 
