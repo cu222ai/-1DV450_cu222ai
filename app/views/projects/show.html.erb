@@ -27,15 +27,13 @@ You(Owner)
 
 <br /> <br />
 
-<% if @project.users.include? (@session) %>
+<% if @included || @project.user_id == @user_id%>
 
 <%= link_to "New ticket", new_project_ticket_path(@project) %><br />
 <% end %>
 </div>
-
+<br /><br />
 <%  if @project.user_id == @user_id %>
-<%= link_to "New ticket", new_project_ticket_path(@project) %><br />
-
 <b> <%= link_to 'Edit', {:action => 'edit', :id => @project.id} %></b><br />
 <b> <%= link_to "Delete",  project_path(@project),
 :method => :delete,

@@ -3,14 +3,13 @@ class UsersController < ApplicationController
   before_filter :save_login_state, :only => [:new, :create]
 
   def new
-
-      @user = User.new
+    @user = User.new
   end
 
    def create
      @user = User.new(params[:user])
      if @user.save
-     flash[:notice] = "User registred"
+        flash[:notice] = "User registred"
         flash[:color]= "valid"
       else
         flash[:notice] = "Wrong details"
@@ -18,5 +17,4 @@ class UsersController < ApplicationController
       end
       render "new"
     end
-
 end
