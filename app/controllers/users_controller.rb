@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :save_login_state, :only => [:new, :create]
+  before_filter :save_login_state, :only => [:new, :create, :login_attempt, :logout]
 
   def new
     @user = User.new

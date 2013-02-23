@@ -13,6 +13,7 @@ You(Owner)
 <% end %>
 <% @project.users.each do |u| %>
 <%= u.username %>
+
 <br />
 <% end %>
 <br />
@@ -21,7 +22,7 @@ You(Owner)
 <h4> Tickets for <%= @project.name %>: </h4>
 <% @project.tickets.each do |t| %>
 
-<%= link_to t.name, ticket_path(t) %><br />
+<%= link_to t.name, ticket_path(t) %> -   Type: <%= t.status.status_name %><br />
 <br />
 <% end %>
 
@@ -40,5 +41,5 @@ You(Owner)
 :confirm => "Are you sure you want to delete this project?" %></b>
 <% end %>
 <br /><br /><br />
-<%= link_to 'Back', {:action => 'projects'} %>
+<%= link_to 'Back', {:controller => 'projects'} %>
 </div>

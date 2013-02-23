@@ -1,4 +1,7 @@
 class TicketsController < ApplicationController
+
+before_filter :authenticate_user, :only => [:index, :new, :edit, :destroy, :show]
+
   def index
     @tickets= Ticket.all
   end

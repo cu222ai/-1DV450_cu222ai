@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  require 'bcrypt'
+
   attr_accessor :password
 
   before_save :encrypt_password
@@ -15,9 +15,12 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation
 
 
-  def self.authenticate(username="", login_password="")
+  def self.authenticate(username_or_email="", login_password="")
 
- if user = User.find_by_username(username)
+    if EMAIL_REGEX.match(username_or_email)
+      user = User.find_by_email(username_or_email)
+    else
+      user = User.find_by_username(username_or_email)
     end
 
     if user && user.match_password(login_password)

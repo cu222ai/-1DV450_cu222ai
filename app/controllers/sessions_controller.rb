@@ -3,16 +3,12 @@ class SessionsController < ApplicationController
   before_filter :authenticate_user, :except => [:index, :login, :login_attempt, :logout]
   before_filter :save_login_state, :only => [:index, :login, :login_attempt]
 
-  def home
-    #Home Page
-  end
-
  def login
     #Login Form
   end
 
   def login_attempt
-    authorized_user = User.authenticate(params[:username],params[:login_password])
+    authorized_user = User.authenticate(params[:username_or_email],params[:login_password])
     if authorized_user
       session[:user_id] = authorized_user.id
       redirect_to(:controller => 'projects')

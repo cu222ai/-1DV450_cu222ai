@@ -64,21 +64,17 @@ resources :users
 
   root :to => 'sessions#login'
 
+  match "home", :to => "sessions#home"
+    match "register", :to => "users#new"
+   match "login", :to => "sessions#login"
+    match "logout", :to => "sessions#logout"
 
-  match "register", :to => "users#new"
- match "login", :to => "sessions#login_attempt"
-  match "logout", :to => "sessions#logout"
-match "projects", :to => "projects#projects"
-match "tickets", :to => "tickets#tickets"
-#match "*path", :to => "projects#index"
+  match "tickets", :to => "tickets#tickets"
 
-
-
-
-
-  # See how all your routes lay out with "rake routes"
+# See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  #match ':controller(/:action(/:id))(.:format)'
+
+  match ':controller(/:action(/:id))(.:format)'
 end
