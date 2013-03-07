@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
 
-before_filter :authenticate_user, :only => [:index, :new, :edit, :destroy, :show]
 
 def index
     @projects = Project.search(params[:search])

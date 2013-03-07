@@ -5,10 +5,8 @@ class ApplicationController < ActionController::Base
  rescue_from ActionController::UnknownController,  :with => :rescue404
 
 before_filter :authenticate_user, :only => [:index, :edit, :destroy, :logout]
-  before_filter :save_login_state,  :except => [:index, :login]
 
-
-  def authenticate_user
+def authenticate_user
     unless session[:user_id]
       redirect_to(:controller => 'sessions', :action => 'login')
       return false
@@ -25,9 +23,8 @@ def rescue404
   #This method for prevent user to access Signup & Login Page without logout
   def save_login_state
     if session[:user_id]
-            @global_session= User.find session[:user_id]
-
-      return false
+       @global_session= User.find session[:user_id]
+return false
     else
       return true
     end
