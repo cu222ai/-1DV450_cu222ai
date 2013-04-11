@@ -46,7 +46,7 @@ Project users:
 Tickets:
 {% for ticket in project.ticket_set.all %}
 
-        <li><a href="{% url ticket_detail project.id ticket.id%}">{{ ticket.name }}</a></li>
+        <li><a href="{% url ticket_detail project.id ticket.id%}">{{ ticket.name }}</a>   Owner: {{ ticket.user.username }}</li>
     {% endfor %}
 
 

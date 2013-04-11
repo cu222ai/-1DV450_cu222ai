@@ -132,6 +132,7 @@ def delete(request, project_id):
 
 def ticket_delete(request, ticket_id, project_id):
   ticket = get_object_or_404(Ticket, pk = ticket_id)
+  project = get_object_or_404(Project, pk = project_id)
   if ticket.owner_by_user(request.user):
     if request.method == "GET":
       project = get_object_or_404(Project, pk = project_id)
@@ -140,7 +141,7 @@ def ticket_delete(request, ticket_id, project_id):
       return redirect('detail', project.id)
   else:
     request.flash['warning'] = 'You are not the owner of this ticket'
-    return redirect('detail', ticket.id)
+    return redirect('detail', project.id)
 
 def edit(request, project_id):
   if request.user.is_authenticated():
@@ -164,21 +165,20 @@ def edit(request, project_id):
 def ticket_edit(request, ticket_id, project_id):
   if request.user.is_authenticated():
     ticket = get_object_or_404(Ticket, pk = ticket_id)
+    project = get_object_or_404(Project, pk = project_id)
     if ticket.owner_by_user(request.user):
       if request.method == "POST":
         form = TicketForm(request.POST, instance = ticket)
         if form.is_valid():
-          try:
-            form.save()
-            request.flash['notice'] = 'Ticket added'
-            return redirect('detail', ticket.id)
-          except:
-            return HttpResponseServerError()
+          form.save()
+          request.flash['notice'] = 'Ticket edited!'
+          return redirect('ticket_detail', project.id, ticket.id)
       else:
+        request.flash['notice'] = 'Ticket fel!'
         form = TicketForm(instance = ticket)
-        return render(request,  'projects/ticket_edit.html' , {"form" : form, "ticket" : ticket, })
+      return render(request,  'projects/ticket_edit.html' , {"form" : form, "ticket" : ticket })
     else:
       request.flash['warning'] = 'You are not the owner of this ticket'
-      return redirect('detail', ticket.id)
+      return redirect('ticket_detail', project.id, ticket.id)
   else:
     return redirect(login_user)
