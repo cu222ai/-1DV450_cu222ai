@@ -63,14 +63,10 @@ def login_user(request):
     if user is not None:
       if user.is_active:
         login(request, user)
-        state = "Logged in!"
         request.flash['notice'] = 'Logged in'
         return redirect(index)
-      else:
-        state = "Wrong details."
     else:
       request.flash['warning'] = 'Wrong details'
-
   if request.user.is_authenticated():
     return redirect(index)
 
@@ -141,7 +137,7 @@ def ticket_delete(request, ticket_id, project_id):
       return redirect('detail', project.id)
   else:
     request.flash['warning'] = 'You are not the owner of this ticket'
-    return redirect('detail', project.id)
+    return redirect('ticket_detail', project.id, ticket.id)
 
 def edit(request, project_id):
   if request.user.is_authenticated():
